@@ -19,7 +19,6 @@
     "vitest": "^2.1.8"
   },
   "dependencies": {
-    "@survive-the-night/game-server": "*",
     "@survive-the-night/game-shared": "*",
     "socket.io-client": "^4.8.1"
   }

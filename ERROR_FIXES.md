@@ -80,6 +80,29 @@ These paths are relative to the **Repository Root**. When you set the Root Direc
 
 
 ### Summary
-*   **Do not deploy `game-client` directly.**
-*   **Deploy `website`** for the frontend.
 *   **Deploy `game-server`** for the backend.
+
+## Build Error: "ENOENT: no such file or directory ... tsconfig.json"
+
+### Problem
+During the build process, you may see errors like:
+```
+TSConfckParseError: parsing /app/packages/game-server/tsconfig.json failed: Error: ENOENT: no such file or directory
+```
+This happens when building the `website` (which includes `game-client`).
+
+### Cause
+The `game-client` package incorrectly depended on `game-server`.
+*   `package.json` had `"@survive-the-night/game-server": "*"`
+*   `tsconfig.json` had references to `../game-server`
+
+Since the client build (in Docker) might not have access to the server files (or shouldn't need them), this dependency causes the build to fail when it tries to resolve the server's `tsconfig.json`.
+
+### Solution
+I have automatically applied the fix to your local files:
+1.  **Removed dependency** in `packages/game-client/package.json`.
+2.  **Removed references** in `packages/game-client/tsconfig.json`.
+
+**Action Required:**
+*   **Push these changes to GitHub** (`git add .`, `git commit`, `git push`).
+*   Trigger a new deployment in Railway.

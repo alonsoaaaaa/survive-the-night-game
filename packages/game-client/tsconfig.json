@@ -21,17 +21,13 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@shared/*": ["../game-shared/src/*"],
-      "@server/*": ["../game-server/src/*"],
+      "@shared/*": ["../game-shared/src/*"]
     }
   },
   "references": [
     {
       "path": "../game-shared"
-    },
-    {
-      "path": "../game-server"
-    },
+    }
   ],
   "include": ["**/*.ts", "**/*.tsx", "tests/**/*"],
   "exclude": ["node_modules"],
