@@ -10,7 +10,7 @@ COPY packages/game-client/package*.json ./packages/game-client/
 COPY packages/game-shared/package*.json ./packages/game-shared/
 RUN npm ci
 COPY . .
-RUN npm run build -w packages/website && \
-    npm ci --omit=dev -w packages/website
+RUN npm run build --workspace=packages/website && \
+    npm ci --omit=dev --workspace=packages/website
 WORKDIR /app/packages/website
 CMD ["npm", "run", "start"]
