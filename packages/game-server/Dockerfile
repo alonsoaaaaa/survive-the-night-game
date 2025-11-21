@@ -58,4 +58,6 @@ COPY --from=build /app/packages/game-server/dist ./packages/game-server/dist
 
 WORKDIR /app/packages/game-server
 
+ENV WEBSOCKET_IMPLEMENTATION=socketio
+
 CMD ["node", "dist/server.cjs"]
